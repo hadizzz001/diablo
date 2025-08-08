@@ -443,7 +443,7 @@ const generatePDF = async () => {
                       width="14"
                       height="14"
                       className="ml-2 mr-2 myBB"
-                      fill="#53e6e6"
+                      fill="#fd342d"
                     >
                       <path
                         className="st0 myBB"
@@ -456,7 +456,7 @@ const generatePDF = async () => {
                       width="14"
                       height="14"
                       className="ml-2 mr-2 myBB rotate-180"
-                      fill="#53e6e6"
+                      fill="#fd342d"
                     >
                       <path
                         className="st0 myBB"

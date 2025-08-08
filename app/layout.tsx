@@ -40,47 +40,47 @@ export default function RootLayout({
   />
   <meta content="max-image-preview:large" name="robots" />
   <title>
-    AquaNotch
+    diablo
   </title>
   <meta
-    content="At AquaNotch, we're reshaping the way businesses connect."
+    content="At diablo, we're reshaping the way businesses connect."
     name="description" 
   />
-  <meta content="AquaNotch" name="keywords" property="AquaNotchbynature, AquaNotch, men, women" />
+  <meta content="diablo" name="keywords" property="diablobynature, diablo, men, women" />
   <meta
-    content="AquaNotch"
+    content="diablo"
     name=""
     property="og:title"
   />
   <meta
-    content="https://AquaNotchbynature.com/"
+    content="https://diablobynature.com/"
     name=""
     property="og:url"
   />
   <meta content="website" name="" property="og:type" />
   <meta
-    content="At AquaNotch, we're reshaping the way businesses connect."
+    content="At diablo, we're reshaping the way businesses connect."
     name=""
     property="og:description"
   />
   <meta
-    content="https://res.cloudinary.com/dj61ewxvc/image/upload/v1747401900/r_c4s6w9.png"
+    content="https://res.cloudinary.com/dlqj4aigl/image/upload/v1754069461/c770171d-b7c4-41bc-b7e8-0d8308805cb2-removebg-preview_uivh27.png"
     name=""
     property="og:image"
   />
    
   <link
-    href="https://res.cloudinary.com/dj61ewxvc/image/upload/v1747401900/r_c4s6w9.png"
+    href="https://res.cloudinary.com/dlqj4aigl/image/upload/v1754069461/c770171d-b7c4-41bc-b7e8-0d8308805cb2-removebg-preview_uivh27.png"
     rel="apple-touch-icon"
     sizes="180x180"
   />
   <link
-    href="https://res.cloudinary.com/dj61ewxvc/image/upload/v1747401900/r_c4s6w9.png"
+    href="https://res.cloudinary.com/dlqj4aigl/image/upload/v1754069461/c770171d-b7c4-41bc-b7e8-0d8308805cb2-removebg-preview_uivh27.png"
     rel="icon"
     sizes="32x32" 
   />
   <link
-    href="https://res.cloudinary.com/dj61ewxvc/image/upload/v1747401900/r_c4s6w9.png"
+    href="https://res.cloudinary.com/dlqj4aigl/image/upload/v1754069461/c770171d-b7c4-41bc-b7e8-0d8308805cb2-removebg-preview_uivh27.png"
     rel="icon"
     sizes="16x16" 
   /> 
@@ -130,8 +130,7 @@ export default function RootLayout({
 </>
 
       <body>
- 
-      <Offer /> 
+  
       <GifLoader />
 
         

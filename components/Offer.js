@@ -8,7 +8,7 @@ export default function OfferHeadline() {
   return (
     <div
       style={{
-        backgroundColor: "#53e6e6",
+        backgroundColor: "#fd342d",
         color: "white",
         fontSize: "14px",
         padding: "5px 0",

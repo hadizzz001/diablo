@@ -9,7 +9,7 @@ const WhatsAppIcon = () => {
       rel="noopener noreferrer"
       style={{
         position: 'fixed',
-        bottom: '20px',
+        bottom: '70px',
         right: '20px',
         backgroundColor: '#fff',
         color: '#fff',
@@ -40,7 +40,7 @@ const WhatsAppIcon = () => {
       <g
         id="Color-"
         transform="translate(-700.000000, -360.000000)"
-        fill="#53e6e6"
+        fill="#fd342d"
       >
         {" "}
         <path

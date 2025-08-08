@@ -15,7 +15,7 @@ export const sendEmail = async (formData: FormData) => {
     if (firstname != null) {
         resend.emails.send({
             from: "info@anazon.hadizproductions.com",
-            to: "info@aquanotch.com",
+            to: "info@diablo.com",
             subject: "New message from your website customer",
             text: "Name: " + firstname + " " + lastname + "\nEmail:" + email + "\nPhone:" + phone + "\n" + message,
         })
@@ -24,8 +24,8 @@ export const sendEmail = async (formData: FormData) => {
         resend.emails.send({
             from: "info@anazon.hadizproductions.com",
             to: email+"",
-            subject: "Offer code from AquaNotch",
-            text: "Thanks you for subscribing with AquaNotch your code is: Abcd12345",
+            subject: "Offer code from diablo",
+            text: "Thanks you for subscribing with diablo your code is: Abcd12345",
         })
     }
     

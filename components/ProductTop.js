@@ -14,10 +14,11 @@ const YourComponent = () => {
 
 const fetchCategories = async () => {
     try {
-        const response = await fetch('/api/products', { cache: 'no-store' });
+        const response = await fetch('/api/productss', { cache: 'no-store' });
         if (response.ok) {
             const data = await response.json();
-            setAllTemps(data.slice(0, 10)); // Get only the first 10 items
+            setAllTemps(data.slice().reverse().slice(0, 5));
+
         } else {
             console.error('Failed to fetch categories');
         }
@@ -32,7 +33,7 @@ const fetchCategories = async () => {
 
 
     return (
-        <div className="ProvidersIfSelectedProductMatchesFilter mt-4">
+        <div className="ProvidersIfSelectedProductMatchesFilter mt-4 container">
 
             <content-block slug="product-page-wssb">
                 <div className="ProductTile-SliderContainer ProductTile-SliderContainer--YMAL">
@@ -53,18 +54,18 @@ const fetchCategories = async () => {
                             <div className="  ProductTile-SliderContainer ProductTile-SliderContainer--YMAL px-3" data-product-list-category="ymal-slider">
 
                                 <div className="flex items-center justify-between w-full">
-                                    <h1 className="py-2 leading-[0rem] font-stretch-[66.66%] not-italic tracking-widest uppercase text-[#222] transition text-nowrap font-bold text-[16px] myGray">
-                                        Latest Products
+                                    <h1 className="py-2 leading-[0rem] font-stretch-[66.66%] not-italic tracking-widest uppercase text-[#222] transition text-nowrap font-bold text-[16px] myGray mb-5">
+                                         
                                     </h1>
                                     <button
                                     id='mybbtn' 
-                                    className='myGray  ' 
+                                    className='myGray uppercase  '
                                     onClick={() => router.push("/shop")}
                                     >
-                                        Shop All
+                                        View All
                                     </button>
                                 </div>
-                                <div className="w-[70px] h-[5px] bg-[#53e6e6] mt-1 mb-5"></div>
+                              
 
 
 

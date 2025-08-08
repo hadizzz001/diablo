@@ -11,7 +11,7 @@ const ResponsiveVideo = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/api/category");
+        const response = await fetch("/api/sub");
         const data = await response.json();
         setCategories(data || []);
       } catch (error) {
@@ -23,7 +23,7 @@ const ResponsiveVideo = () => {
   }, []);
 
   const handleCategoryClick = (name) => {
-    router.push("/search?cat=" + name);
+    router.push("/search?sub=" + name);
   };
 
   return (

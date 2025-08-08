@@ -11,8 +11,8 @@ export default function OfferPopup() {
   useEffect(() => {
     if (
       window.location.hostname === "localhost" ||
-      window.location.hostname === "aquanotch.netlify.app" ||
-      window.location.hostname === "aquanotch.com"
+      window.location.hostname === "diablo.netlify.app" ||
+      window.location.hostname === "diablo.com"
     ) {
       const hasSeenPopup = localStorage.getItem("hasSeenOfferPopup");
       if (!hasSeenPopup) {
@@ -134,7 +134,7 @@ export default function OfferPopup() {
                 type="submit"
                 style={{
                   marginTop: "25px",
-                  backgroundColor: "#53e6e6",
+                  backgroundColor: "#fd342d",
                   color: "white",
                   padding: "12px", 
                   border: "none",
@@ -183,7 +183,7 @@ export default function OfferPopup() {
                   borderRadius: "5px",
                   border: "none",
                   cursor: "pointer",
-                  backgroundColor: "#53e6e6",
+                  backgroundColor: "#fd342d",
                   color: "#fff",
                 }}
               >

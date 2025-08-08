@@ -2,7 +2,9 @@
 import { useState, useEffect } from "react";
 import ProductArrival from './ProductArrival';
 import Catslider from './Catslider';
+import Catslider1 from './Catslider1';
 import ProductTop from './ProductTop';
+import ProductTop1 from './ProductTop1';
 import Vid from './Vid';
 import ReviewsSwiper from './ReviewsSwiper';
 import Rate from './Rate';
@@ -10,6 +12,7 @@ import Offer from './Offer';
 import Box from './Box';
 import Carousel from './Carousel';
 import Carousel1 from './Carousel1';
+import TextSlide from './TextSlide';
 
 
 
@@ -124,10 +127,13 @@ const Body = () => {
         <Box />
 
         <Carousel />
+        <TextSlide />
 
-        <ProductArrival />
+         
         <Catslider />
+        <ProductTop1 />
         <Carousel1 />
+        <Catslider1 />
 
         <ProductTop />
         <ReviewsSwiper />
@@ -139,7 +145,7 @@ const Body = () => {
           type="text/css"
           dangerouslySetInnerHTML={{
             __html:
-              ".sywMobileQuotes{background-color:#53e6e6;padding:35px 0 0}.sywMobileQuotes__quoteIcon{max-width:35px;margin:0 auto}.sywMobileQuotes__quoteIcon img{width:100%}.sywMobileQuotes__title{text-align:center;color:#FFF;margin:25px auto 0}.sywMobileQuotes--quoteSlider{position:relative;background-color:transparent;color:#FFF;overflow:hidden;z-index:1}.sywMobileQuotes__content{text-align:center;display:flex;width:100%;overflow-x:scroll;scroll-snap-type:both mandatory;padding:15px 0 80px}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide{display:flex;flex-direction:column;justify-content:center;background-color:#53e6e6;min-width:100%;scroll-snap-align:start;scroll-snap-stop:always;-webkit-overflow-scrolling:touch}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide .logo{height:15vw;max-height:25px;margin:0 auto}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide .logo>img{height:100%}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide .text{padding:10px 20px 25px;max-width:375px;margin:0 auto}.sywMobileQuotes--quoteSlider .quoteDots{position:absolute;left:50%;bottom:10px;transform:translate(-50%);z-index:10;list-style:none;padding:0}.sywMobileQuotes--quoteSlider .quoteDots__dot{display:inline;margin:0 5px;padding:0;list-style:none;cursor:pointer}.sywMobileQuotes--quoteSlider .quoteDots__dot.quote_dot_active span{background:#FFF}.sywMobileQuotes--quoteSlider .quoteDots__dot span{display:inline-block;width:12px;height:12px;border:1px solid #FFF;border-radius:50%;pointer-event:none}@media (pointer: fine){.sywMobileQuotes__content{overflow-x:hidden;padding:40px 0 100px}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide{box-sizing:content-box}}@media (min-width: 769px){.sywMobileQuotes{display:none}}\n"
+              ".sywMobileQuotes{background-color:#fd342d;padding:35px 0 0}.sywMobileQuotes__quoteIcon{max-width:35px;margin:0 auto}.sywMobileQuotes__quoteIcon img{width:100%}.sywMobileQuotes__title{text-align:center;color:#FFF;margin:25px auto 0}.sywMobileQuotes--quoteSlider{position:relative;background-color:transparent;color:#FFF;overflow:hidden;z-index:1}.sywMobileQuotes__content{text-align:center;display:flex;width:100%;overflow-x:scroll;scroll-snap-type:both mandatory;padding:15px 0 80px}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide{display:flex;flex-direction:column;justify-content:center;background-color:#fd342d;min-width:100%;scroll-snap-align:start;scroll-snap-stop:always;-webkit-overflow-scrolling:touch}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide .logo{height:15vw;max-height:25px;margin:0 auto}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide .logo>img{height:100%}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide .text{padding:10px 20px 25px;max-width:375px;margin:0 auto}.sywMobileQuotes--quoteSlider .quoteDots{position:absolute;left:50%;bottom:10px;transform:translate(-50%);z-index:10;list-style:none;padding:0}.sywMobileQuotes--quoteSlider .quoteDots__dot{display:inline;margin:0 5px;padding:0;list-style:none;cursor:pointer}.sywMobileQuotes--quoteSlider .quoteDots__dot.quote_dot_active span{background:#FFF}.sywMobileQuotes--quoteSlider .quoteDots__dot span{display:inline-block;width:12px;height:12px;border:1px solid #FFF;border-radius:50%;pointer-event:none}@media (pointer: fine){.sywMobileQuotes__content{overflow-x:hidden;padding:40px 0 100px}.sywMobileQuotes--quoteSlider .sywQuoteSlider__slide{box-sizing:content-box}}@media (min-width: 769px){.sywMobileQuotes{display:none}}\n"
           }}
         />
 

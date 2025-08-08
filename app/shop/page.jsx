@@ -401,7 +401,7 @@ const Body = () => {
                   style={{
                     width: '30px',
                     height: '30px',
-                    backgroundColor: '#53e6e6',
+                    backgroundColor: '#fd342d',
                     borderRadius: '50%',
                   }}
                 >

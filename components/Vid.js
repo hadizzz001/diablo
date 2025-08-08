@@ -22,7 +22,7 @@ const ResponsiveVideo = () => {
         </video>
 
         <h3 style={{textShadow: '2px 2px 10px rgba(0, 0, 0, 0.3)'}} className="tracking-[1px] text-center uppercase absolute bottom-20 left-1/2 transform -translate-x-1/2  text-white px-6 py-2   transition text-nowrap font-bold text-4xl">radiant skin</h3>
-        <button onClick={() => router.push("/shop")} className="text-3x1 absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-[#53e6e6] text-white px-8 py-2 rounded-lg shadow-md  transition">
+        <button onClick={() => router.push("/shop")} className="text-3x1 absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-[#fd342d] text-white px-8 py-2 rounded-lg shadow-md  transition">
           Shop Now
         </button>
       </div>
