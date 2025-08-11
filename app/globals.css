@@ -1696,3 +1696,9 @@
 .myRedBo{
   border: red solid 1px !important;
 }
+
+
+.myPrice123{
+  font-size: 20px !important;
+  font-weight: 400 !important;
+}

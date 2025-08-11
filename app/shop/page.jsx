@@ -12,21 +12,28 @@ const Body = () => {
   const [checkedCategories, setCheckedCategories] = useState([]); // Store selected category IDs 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [subCategoriesData, setSubCategoriesData] = useState([]);
+  const [factoriesData, setFactoriesData] = useState([]);
+  const [checkedSubCategories, setCheckedSubCategories] = useState([]);
+  const [checkedFactories, setCheckedFactories] = useState([]);
 
-  const fetchProducts = async (pageNum = 1) => {
-    const params = new URLSearchParams();
+const fetchProducts = async (pageNum = 1) => {
+  const params = new URLSearchParams();
 
-    params.append('page', pageNum);
-    params.append('limit', 10);
+  params.append('page', pageNum);
+  params.append('limit', 10);
 
-    checkedCategories.forEach(cat => params.append('category', cat));
+  // Fix param keys here:
+  checkedCategories.forEach(cat => params.append('cat', cat));
+  checkedSubCategories.forEach(sub => params.append('sub', sub));
+  checkedFactories.forEach(fac => params.append('brnd', fac));  // 'brnd' not 'factory'
 
-    const res = await fetch(`/api/productsz?${params.toString()}`);
-    const data = await res.json();
+  const res = await fetch(`/api/productsz1?${params.toString()}`);
+  const data = await res.json();
 
-    setTemp(data.products);
-    setTotalPages(data.totalPages);
-  };
+  setTemp(data.products);
+  setTotalPages(data.totalPages);
+};
 
 
 
@@ -91,11 +98,13 @@ const Body = () => {
 
   useEffect(() => {
     fetchCategories();
+    fetchSubCategories();
+    fetchFactories();
   }, []);
 
   useEffect(() => {
     fetchProducts(page);
-  }, [checkedCategories, page]);
+  }, [checkedCategories,checkedFactories,checkedSubCategories, page]);
 
 
 
@@ -109,6 +118,26 @@ const Body = () => {
     }
   };
 
+  const fetchSubCategories = async () => {
+    try {
+      const response = await fetch("/api/sub");
+      const data = await response.json();
+      setSubCategoriesData(data);
+    } catch (error) {
+      console.error("Error fetching subcategories:", error);
+    }
+  };
+
+  const fetchFactories = async () => {
+    try {
+      const response = await fetch("/api/factory");
+      const data = await response.json();
+      setFactoriesData(data);
+    } catch (error) {
+      console.error("Error fetching factories:", error);
+    }
+  };
+
 
   const handleCheckboxChange = (categoryId) => {
     setPage(1);
@@ -119,6 +148,23 @@ const Body = () => {
     );
   };
 
+  const handleSubCategoryChange = (subCategoryId) => {
+    setPage(1);
+    setCheckedSubCategories((prev) =>
+      prev.includes(subCategoryId)
+        ? prev.filter((id) => id !== subCategoryId)
+        : [...prev, subCategoryId]
+    );
+  };
+
+  const handleFactoryChange = (factoryId) => {
+    setPage(1);
+    setCheckedFactories((prev) =>
+      prev.includes(factoryId)
+        ? prev.filter((id) => id !== factoryId)
+        : [...prev, factoryId]
+    );
+  };
 
 
 
@@ -131,11 +177,11 @@ const Body = () => {
 
         <header className="br_text-white  br_p-3 br_pt-11 md:br_py-20 br_flex md:br_justify-center">
           <div className="br_text-left md:br_max-w-[600px] lg:br_max-w-[800px] md:br_text-center br_flex br_flex-col br_gap-2  md:br_gap-4 md:br_items-center">
-            <h1 className="br_text-3xl md:br_text-4xl  myGray">
+            <h3 className="br_text-md md:br_text-md  myGray">
               Our Products
-            </h1>
+            </h3>
             <p className="br_text-base-sans-stretched md:br_text-lg-sans-stretched myGray">
-              Discover stylish products to elevate your personal and professional expression.
+              Discover the finest collection of detailed car model toys for every collector and enthusiast.
             </p>
           </div>
         </header>
@@ -217,6 +263,110 @@ const Body = () => {
               </details>
 
 
+              <details className="br_pl-4 md:br_pl-8 br_pr-4">
+                <summary className="br_list-none br_cursor-pointer [&::-webkit-details-marker]:br_hidden [&::marker]:br_hidden">
+                  <h3 className="br_border-solid br_border-0 br_border-b br_border-grey-300 br_text-white br_text-base-sans-bold-stretched br_pb-2 br_flex br_justify-between br_items-end br_pt-4 myNewC">
+                    SubCategory
+                    <div className="br_w-3 [details[open]_&]:br_rotate-180 br_transition-transform br_duration-200">
+                      <svg
+                        viewBox="0 0 11 6"
+                        width={11}
+                        height={6}
+                        className="br_stroke-none br_fill-current br_w-full br_h-full myBB"
+                      >
+                        <path
+                          className="st0"
+                          d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"
+                        />
+                      </svg>
+                    </div>
+                  </h3>
+                </summary>
+                <div className="br_my-2 md:br_my-4 md:br_h-full br_w-full br_gap-x-5 br_columns-2 md:br_columns-1">
+                  {subCategoriesData.map((subCategory) => (
+                    <div
+                      key={subCategory.id}
+                      className="br_block br_relative br_max-w-full br_w-full br_py-2 br_break-inside-avoid md:br_inline-block md:br_overflow-hidden md:br_m-0 md:br_p-0"
+                      title={subCategory.name}
+                    >
+                      <label className="br_flex br_gap-4 br_cursor-pointer br_text-white br_text-base-sans-spaced br_py-1 md:br_py-2 myNewC">
+                        <input
+                          className="br_absolute br_h-0 br_w-0 br_opacity-0"
+                          type="checkbox"
+                          checked={checkedSubCategories.includes(subCategory.name)}
+                          onChange={() => handleSubCategoryChange(subCategory.name)}
+                        />
+                        <span className="br_shrink-0 br_relative br_h-[22px] br_w-[22px] br_border-[#4a4a4a] br_border-solid br_border br_rounded md:br_h-[18px] md:br_w-[18px]">
+                          <span className="br_h-full br_w-full br_text-white">
+                            <img
+                              src={
+                                checkedSubCategories.includes(subCategory.name)
+                                  ? "https://res.cloudinary.com/duppvjinz/image/upload/v1701685867/eprldb0uad9klcw2ki5z.png" // Checked
+                                  : "https://res.cloudinary.com/duppvjinz/image/upload/v1701541407/jhvrodq8u9e8vjlwe964.png" // Unchecked
+                              }
+                              alt=""
+                            />
+                          </span>
+                        </span>
+                        {subCategory.name}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </details>
+
+              <details className="br_pl-4 md:br_pl-8 br_pr-4">
+                <summary className="br_list-none br_cursor-pointer [&::-webkit-details-marker]:br_hidden [&::marker]:br_hidden">
+                  <h3 className="br_border-solid br_border-0 br_border-b br_border-grey-300 br_text-white br_text-base-sans-bold-stretched br_pb-2 br_flex br_justify-between br_items-end br_pt-4 myNewC">
+                    Factory
+                    <div className="br_w-3 [details[open]_&]:br_rotate-180 br_transition-transform br_duration-200">
+                      <svg
+                        viewBox="0 0 11 6"
+                        width={11}
+                        height={6}
+                        className="br_stroke-none br_fill-current br_w-full br_h-full myBB"
+                      >
+                        <path
+                          className="st0"
+                          d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"
+                        />
+                      </svg>
+                    </div>
+                  </h3>
+                </summary>
+                <div className="br_my-2 md:br_my-4 md:br_h-full br_w-full br_gap-x-5 br_columns-2 md:br_columns-1">
+                  {factoriesData.map((factory) => (
+                    <div
+                      key={factory.id}
+                      className="br_block br_relative br_max-w-full br_w-full br_py-2 br_break-inside-avoid md:br_inline-block md:br_overflow-hidden md:br_m-0 md:br_p-0"
+                      title={factory.name}
+                    >
+                      <label className="br_flex br_gap-4 br_cursor-pointer br_text-white br_text-base-sans-spaced br_py-1 md:br_py-2 myNewC">
+                        <input
+                          className="br_absolute br_h-0 br_w-0 br_opacity-0"
+                          type="checkbox"
+                          checked={checkedFactories.includes(factory.name)}
+                          onChange={() => handleFactoryChange(factory.name)}
+                        />
+                        <span className="br_shrink-0 br_relative br_h-[22px] br_w-[22px] br_border-[#4a4a4a] br_border-solid br_border br_rounded md:br_h-[18px] md:br_w-[18px]">
+                          <span className="br_h-full br_w-full br_text-white">
+                            <img
+                              src={
+                                checkedFactories.includes(factory.name)
+                                  ? "https://res.cloudinary.com/duppvjinz/image/upload/v1701685867/eprldb0uad9klcw2ki5z.png" // Checked
+                                  : "https://res.cloudinary.com/duppvjinz/image/upload/v1701541407/jhvrodq8u9e8vjlwe964.png" // Unchecked
+                              }
+                              alt=""
+                            />
+                          </span>
+                        </span>
+                        {factory.name}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </details>
+
             </div>
 
 
@@ -275,26 +425,27 @@ const Body = () => {
                         key={item._id}
                         className="br_grid br_grid-cols-1 supports-subgrid:br_row-span-4 supports-subgrid:br_grid-rows-[subgrid]"
                       >
-                        <div className="relative inline-block w-full max-w-[300px] aspect-square">
-                          <img
-                            src={item.img[0]}
-                            alt="Default"
-                            className="w-full h-full object-cover object-center rounded"
-                          />
+<div className="relative inline-block w-full max-w-[300px] aspect-square">
+  <img
+    src={item.img[0]}
+    alt="Default"
+    className="w-full h-full object-contain object-center rounded bg-white"
+  />
 
-                          {(
-                            (item.type === 'single' && parseInt(item.stock) === 0) ||
-                            (item.type === 'collection' &&
-                              item.color?.every(color =>
-                                color.sizes?.every(size => parseInt(size.qty) === 0)
-                              )
-                            )
-                          ) && (
-                              <div className="absolute inset-0 bg-gray-600 bg-opacity-70 text-white flex items-center justify-center text-lg font-bold z-10 rounded">
-                                Out of Stock
-                              </div>
-                            )}
-                        </div>
+  {(
+    (item.type === 'single' && parseInt(item.stock) === 0) ||
+    (item.type === 'collection' &&
+      item.color?.every(color =>
+        color.sizes?.every(size => parseInt(size.qty) === 0)
+      )
+    )
+  ) && (
+    <div className="absolute inset-0 bg-gray-600 bg-opacity-70 text-white flex items-center justify-center text-lg font-bold z-10 rounded">
+      Out of Stock
+    </div>
+  )}
+</div>
+
 
 
 
@@ -348,10 +499,7 @@ const Body = () => {
                                         })()
                                         : `$${item.discount}`
                                       )
-                                    }
-                                    <span className="ml-1 text-xs">
-                                      25% off
-                                    </span>
+                                    } 
                                   </span>
                                 </div>
                                 <br />

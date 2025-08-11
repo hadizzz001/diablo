@@ -219,37 +219,7 @@ useEffect(() => {
                             <a className="Common_Button Common_Button--short MiniCart_Cart_CtaButton" href="/checkout" rel="nofollow">
                                 <span>Go to checkout</span>
                             </a>
-
-                            <div className="mt-10 ProductTile-SliderContainer ProductTile-SliderContainer--YMAL" data-product-list-category="ymal-slider">
-                                <div className="ProductTile-SliderContainer-Title br_text-3xl-serif br_text-white myGray">You might also like:</div>
-                                {allTemp2 && allTemp2?.length > 0 ? (
-                                    <section style={{ maxWidth: "100%" }}>
-                                        <Swiper spaceBetween={20} loop modules={[Autoplay]} autoplay={{
-                                            delay: 2000,
-                                            stopOnLastSlide: false,
-                                            reverseDirection: true
-                                        }} breakpoints={{
-                                            150: {
-                                                slidesPerView: 2,
-                                            },
-                                            768: {
-                                                slidesPerView: 2,
-                                            },
-                                        }}>
-                                            <div className='home__cars-wrapper'>
-                                                {allTemp2.map((temp) => (
-                                                    <SwiperSlide key={temp._id}><CarCard5 temp={temp} /></SwiperSlide>
-                                                ))}
-                                            </div>
-                                        </Swiper>
-                                    </section>
-                                ) : (
-                                    <div className='home___error-container'>
-                                        <h2 className='text-black text-xl dont-bold'>...</h2>
-                                    </div>
-                                )}
-                            </div>
-
+ 
                         </div>
 
 

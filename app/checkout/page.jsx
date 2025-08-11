@@ -429,7 +429,7 @@ const generatePDF = async () => {
       />
 
       {cart && cart.length > 0 ? (
-        <div className="wfacp-template-container  ">
+        <div className="wfacp-template-container  mb-10">
 
 
           <div className="wfacp-section wfacp-hg-by-box step_2 form_section_single_step_2_elementor-hific mt-[10em] md:hidden" data-field-count={2}>
@@ -771,7 +771,7 @@ const generatePDF = async () => {
                                       <div className="wfacp-comm-form-detail clearfix">
                                         <div className="wfacp-row">
 
-                                          <h1 className="form-row form-row-wide wfacp-form-control-wrapper text-bold myGray">Contact</h1>
+                                          <h4 className="form-row form-row-wide wfacp-form-control-wrapper text-bold myGray">Contact</h4>
 
                                           <p
                                             className="form-row form-row-wide wfacp-form-control-wrapper wfacp-col-full  wfacp_field_required validate-required validate-email validate-email"
@@ -810,7 +810,7 @@ const generatePDF = async () => {
                                             />
                                           </p>
 
-                                           <h1 className="form-row form-row-wide wfacp-form-control-wrapper text-bold myGray">Delivery</h1>
+                                           <h4 className="form-row form-row-wide wfacp-form-control-wrapper text-bold myGray">Delivery</h4>
                                           <p
                                             className="form-row form-row-first wfacp-form-control-wrapper wfacp-col-left-half  wfacp_field_required validate-required"
                                             id="billing_first_name_field"
@@ -1246,27 +1246,7 @@ const generatePDF = async () => {
                                                   </button>
                                                 </div>
 
-                                                <div>
-                                                  <label className="custom-checkbox-container myGray clickText  ">
-                                                    <span className="ml-[25px]"></span>I am business or would like a b2b offer
-                                                    <input type="checkbox" onChange={handleCheckboxChange} />
-                                                    <span className="custom-checkmark"></span>
-                                                  </label>
-
-                                                  {showLink && (
-                                                    <a
-                                                      href="#"
-                                                      onClick={(e) => {
-                                                        e.preventDefault();
-                                                        generatePDF();
-                                                      }}
-                                                      style={{ display: 'block', marginTop: '1em', color: 'blue' }}
-                                                      className="clickText1"
-                                                    >
-                                                      Generate Product PDF
-                                                    </a>
-                                                  )}
-                                                </div>
+                                              
 
 
 

@@ -19,7 +19,7 @@ const Page = () => {
   const search = searchParams.get('id');
   const custom = searchParams.get('custom');
   const imgg = searchParams.get('imgg');
-  let imgs, title, price, desc, cat, brand, discount, id, stock, type, color
+  let imgs, title, price, desc, cat, brand, discount, id, stock, type, color, sub, fact;
   const { cart, addToCart, quantities } = useCart();
   const { isBooleanValue, setBooleanValue } = useBooleanValue();
   const isInCart = cart?.some((item) => item._id === search);
@@ -66,6 +66,8 @@ const Page = () => {
     stock = allTemp1.stock;
     type = allTemp1.type;
     color = allTemp1.color;
+    sub = allTemp1.sub;
+    fact = allTemp1.factory;
   }
 
 
@@ -244,12 +246,18 @@ const Page = () => {
                 </section>
                 <section className="ProductSelector">
                   <span className="ProvidersSingleProduct--selected">
-                    <h1 className='myGray'>
+                    <h4 className='myGray'>
                       {title}
                       <span className="ProductSelector_EditionLabel" style={{ margin: "0 0 0 3px" }} />
-                    </h1>
+                    </h4>
                     <p className='mb-2 myGray'>
                       Category: {cat}
+                    </p>
+                    <p className='mb-2 myGray'>
+                      Subcategory: {sub}
+                    </p>
+                    <p className='mb-2 myGray'>
+                      Factory: {fact}
                     </p>
 
                   </span>
@@ -344,29 +352,23 @@ const Page = () => {
                     {hasSizes ? (
                       selectedSize ? (
                         <div className="flex items-center space-x-2">
-                          <h1 className="mb-2 myGray line-through font-bold text-lg">
+                          <h2 className="mb-2 myGray line-through   myPrice123">
                             ${(parseFloat(displayedPrice) * 1.25).toFixed(2)}
-                          </h1>
+                          </h2>
 
-                          <h1 className="mb-2 myRed font-bold text-lg">
-                            ${displayedPrice}
-                            <span className="ml-1 text-sm">
-                              25% off
-                            </span>
-                          </h1>
+                          <h3 className="mb-2 myRed font-bold myPrice123">
+                            ${displayedPrice} 
+                          </h3>
                         </div>
                       ) : (
                         <></>
                       )
                     ) : (
                       <div className="flex items-center space-x-2">
-                        <h1 className="mb-2 myGray line-through font-bold text-lg">${parseFloat(price).toFixed(2)}</h1>
-                        <h1 className="mb-2 myRed font-bold text-lg">
-                          ${discount}
-                          <span className="ml-1 text-sm">
-                            25% off
-                          </span>
-                        </h1>
+                        <h2 className="mb-2 myGray line-through    myPrice123 ">${parseFloat(price).toFixed(2)}</h2>
+                        <h2 className="mb-2 myRed font-bold  myPrice123 ">
+                          ${discount} 
+                        </h2>
                       </div>
                     )}
 

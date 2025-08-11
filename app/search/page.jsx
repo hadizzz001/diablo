@@ -13,6 +13,8 @@ const Body = () => {
   // Search query parameters from URL
   const search = searchParams.get('q');
   const search2 = searchParams.get('cat');
+  const search3 = searchParams.get('sub');
+  const search4 = searchParams.get('brnd');
 
 
 
@@ -29,6 +31,8 @@ const Body = () => {
 
       if (search) params.append('q', search);
       if (search2) params.append('cat', search2);
+      if (search3) params.append('sub', search3);
+      if (search4) params.append('brnd', search4);
 
       const res = await fetch(`/api/productsz1?${params.toString()}`);
       const data = await res.json();
@@ -43,7 +47,7 @@ const Body = () => {
 
   useEffect(() => {
     fetchProducts(page);
-  }, [search, search2, page]);
+  }, [search, search2,search3,search4, page]);
 
 
   const handleNextPage = () => {
@@ -68,9 +72,9 @@ const Body = () => {
 
         <header className="br_text-white  br_p-3 br_pt-11 md:br_py-20 br_flex md:br_justify-center">
           <div className="br_text-left md:br_max-w-[600px] lg:br_max-w-[800px] md:br_text-center br_flex br_flex-col br_gap-2  md:br_gap-4 md:br_items-center">
-            <h1 className="myGray br_text-3xl-serif md:br_text-4xl-serif initial:br_text-white">
+            <h5 className="br_text-md md:br_text-md  myGray">
               Are you looking for one of these?
-            </h1>
+            </h5>
           </div>
         </header>
         <div className="br_flex">
@@ -110,7 +114,7 @@ const Body = () => {
   <img
     src={item.img[0]}
     alt="Default"
-    className="w-full h-full object-cover object-center rounded"
+    className="w-full h-full object-contain object-center rounded bg-white"
   />
 
   {(
@@ -179,10 +183,7 @@ const Body = () => {
                                         })()
                                         : `$${item.discount}`
                                       )
-                                    }
-                                    <span className="ml-1 text-xs">
-                                      25% off
-                                    </span>
+                                    } 
                                   </span>
                                 </div>
                                 <br />

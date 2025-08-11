@@ -1,3 +1,4 @@
+ 
 import clientPromise from '../../lib/mongodb';
 import { NextResponse } from 'next/server';
 
@@ -16,29 +17,50 @@ export async function GET(req) {
     const skip = (page - 1) * limit;
 
     const search = searchParams.get('q');
-    const cat = searchParams.get('cat'); 
+    const cat = searchParams.get('cat');
+    const sub = searchParams.get('sub');
+    const brnd = searchParams.get('brnd');
 
     // Build MongoDB query
-    const query = { category: { $ne: 'Pool Trays' } }; // Always exclude 'Pool Trays'
+    const query = {};
 
     if (search) {
-      query.title = { $regex: search, $options: 'i' }; // case-insensitive search
+      query.title = { $regex: search, $options: 'i' }; // case-insensitive partial match
     }
 
     if (cat) {
       if (cat === 'yes') {
         query.arrival = 'yes';
       } else {
-        query.category = { 
-          $regex: `^${cat}$`, 
-          $options: 'i', 
-          $ne: 'Pool Trays' // Combine regex and exclusion
-        };
+        query.category = { $regex: `^${cat}$`, $options: 'i' };
       }
     }
 
+    if (sub) {
+      console.log(`Subcategory filter applied: ${sub}`);
+      
+      query.sub = { $regex: `^${sub}$`, $options: 'i' };
+    }
+
+    if (brnd) {
+      console.log(`brnd filter applied: ${brnd
+
+      }`);
+      query.factory = { $regex: `^${brnd}$`, $options: 'i' };
+    }
+
     const total = await collection.countDocuments(query);
-    const data = await collection.find(query).skip(skip).limit(limit).toArray();
+
+    const data = await collection.find(query)
+      .sort({ sort: 1 })  // Sort by 'sort' ascending
+      .skip(skip)
+      .limit(limit)
+      .toArray();
+
+    // Log category, sub, factory for each item
+    data.forEach(item => {
+      console.log(`Category: ${item.category || 'N/A'}, Sub: ${item.sub || 'N/A'}, Factory: ${item.factory || 'N/A'}`);
+    });
 
     return NextResponse.json({
       currentPage: page,

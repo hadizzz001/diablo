@@ -1,14 +1,37 @@
 "use client";
 
-import React from "react"; 
+import React, { useEffect, useState } from "react";
 
 const MyCarousel = () => {
+  const [videoSrc, setVideoSrc] = useState("");
+
+  useEffect(() => {
+    const fetchBanner = async () => {
+      try {
+        const res = await fetch("/api/banner");
+        if (!res.ok) throw new Error("Failed to fetch banner data");
+
+        const data = await res.json();
+        setVideoSrc(data[0].img[0]);
+      } catch (error) {
+        console.error("Error fetching banner:", error);
+      }
+    };
+
+    fetchBanner();
+  }, []);
+
+  if (!videoSrc) return null;
+
   return (
-    <div className="carousel-container">
-      <img
-        src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1754140709/4519d8e5-ad5c-4c56-aa77-df60acc9bf51_prclbg.webp"
-        alt="Sunny Day Sale"
-        className="carousel-image"
+    <div className="carousel-container w-[1500px] h-[500px] overflow-hidden container  ">
+      <video
+        src={videoSrc}
+        className="w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
       />
     </div>
   );

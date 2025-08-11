@@ -25,7 +25,7 @@ export const sendEmail = async (formData: FormData) => {
             from: "info@anazon.hadizproductions.com",
             to: email+"",
             subject: "Offer code from diablo",
-            text: "Thanks you for subscribing with diablo your code is: Abcd12345",
+            text: "Thanks you for subscribing with diablo your code is: abcd1234",
         })
     }
     

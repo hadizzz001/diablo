@@ -11,7 +11,7 @@ export default function OfferPopup() {
   useEffect(() => {
     if (
       window.location.hostname === "localhost" ||
-      window.location.hostname === "diablo.netlify.app" ||
+      window.location.hostname === "diablocar.netlify.app" ||
       window.location.hostname === "diablo.com"
     ) {
       const hasSeenPopup = localStorage.getItem("hasSeenOfferPopup");
@@ -42,7 +42,7 @@ export default function OfferPopup() {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("Abcd12345");
+    navigator.clipboard.writeText("abcd1234");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); // Reset after 2s
   };
@@ -171,7 +171,7 @@ export default function OfferPopup() {
               }}
               className="myBB"
             >
-              { "Abcd12345"}
+              { "abcd1234"}
               {/* 🔥 Copy Button */}
               <button
                 onClick={handleCopy}

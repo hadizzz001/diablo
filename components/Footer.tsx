@@ -98,7 +98,7 @@ const Footer = () => {
                 }}
             />
             <div className="NewsletterSignupFooter">
-                <h2 className="NewsletterSignupFooter_Heading br_text-2xl br_text-center myGray">
+                <h2 className="NewsletterSignupFooter_Heading br_text-2xl br_text-center myWhite">
                     Get exclusive access to new products, deals &amp; surprise treats.
                 </h2>
                 <div className="NewsletterSignupFooter_Component">
@@ -230,7 +230,7 @@ const Footer = () => {
                             <li>
                                 <a
                                     target="_blank"
-                                    href="https://wa.me/96176419884"
+                                    href="https://wa.me/96103762543"
                                     data-auto-id="true"
                                     id="page-footer-https-www-youtube-com-channel-ucy6vodc_wyzj4rlslixgp1q-1"
                                 >
@@ -256,7 +256,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="column collapsable-section" id='footId1' onClick={handleFoot}>
-                        <h4 className='myGray'>
+                        <h4 className='myWhite'>
                             HELP
                             <svg
                                 version="1.1"
@@ -306,7 +306,7 @@ const Footer = () => {
                     </div>
 
                     <div className="column collapsable-section" id='footId2' onClick={handleFoot2}>
-                        <h4 className='myGray'>
+                        <h4 className='myWhite'>
                             Shop Collections
                             <svg
                                 version="1.1"
@@ -387,7 +387,7 @@ const Footer = () => {
                         </div>
                         <div className="text">
                             <div className="column mb-5"  >
-                                <p className="question myGray">
+                                <p className="question myWhite">
                                     Got a question?{" "}
                                     <span>
                                         Contact{" "}
@@ -395,7 +395,7 @@ const Footer = () => {
                                             href="mailto:info@diablo.com"
                                             data-auto-id="true"
                                             id="page-footer-mailto-support-bellroy-com-1"
-                                            className='myGray'
+                                            className='myWhite'
                                         >
                                             info@diablo.com
                                         </a>
@@ -403,7 +403,7 @@ const Footer = () => {
                                 </p>
                             </div>
                             <div className="column">
-                                <span className="copyright myGray">
+                                <span className="copyright myWhite">
                                     All rights reserved © {(new Date().getFullYear())} diablo
                                 </span>
                             </div>

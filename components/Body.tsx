@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import ProductArrival from './ProductArrival';
 import Catslider from './Catslider';
 import Catslider1 from './Catslider1';
+import Catslider2 from './Catslider2';
 import ProductTop from './ProductTop';
 import ProductTop1 from './ProductTop1';
 import Vid from './Vid';
@@ -127,6 +128,7 @@ const Body = () => {
         <Box />
 
         <Carousel />
+        <Catslider2 />
         <TextSlide />
 
          
