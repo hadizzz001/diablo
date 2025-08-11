@@ -508,7 +508,8 @@ const generatePDF = async () => {
                                   <span className="woocommerce-Price-amount amount" style={{ color: "#82838e" }}>
                                     <bdi>
                                       <span className="woocommerce-Price-currencySymbol" style={{ color: "#82838e" }}>$</span>
-                                      {(obj.discount * localQuantities[obj._id] || obj.discount).toFixed(2)}
+                                       {obj.type === 'collection' && obj.selectedSize ? obj.color.find(c => c.color === obj.selectedColor)?.sizes.find(s => s.size === obj.selectedSize)?.price * (localQuantities[obj._id]) : obj.discount * (localQuantities[obj._id] || 1)}
+ 
                                     </bdi>
                                   </span>
                                 </div>
