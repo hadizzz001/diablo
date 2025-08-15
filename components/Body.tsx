@@ -4,7 +4,7 @@ import ProductArrival from './ProductArrival';
 import Catslider from './Catslider';
 import Catslider1 from './Catslider1';
 import Catslider2 from './Catslider2';
-import ProductTop from './ProductTop';
+import ProductTop2 from './ProductTop2';
 import ProductTop1 from './ProductTop1';
 import Vid from './Vid';
 import ReviewsSwiper from './ReviewsSwiper';
@@ -128,16 +128,13 @@ const Body = () => {
         <Box />
 
         <Carousel />
+        
+        <ProductTop2 />
         <Catslider2 />
-        <TextSlide />
-
-         
-        <Catslider />
-        <ProductTop1 />
+        <TextSlide /> 
+        <Catslider /> 
         <Carousel1 />
-        <Catslider1 />
-
-        <ProductTop />
+        <Catslider1 /> 
         <ReviewsSwiper />
         <Rate />
 
