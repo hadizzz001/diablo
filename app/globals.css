@@ -1702,3 +1702,25 @@
   font-size: 20px !important;
   font-weight: 400 !important;
 }
+
+
+.banner-title {
+  position: absolute;
+  bottom: 1rem; /* same as bottom-4 */
+  left: 1rem;   /* same as left-4 */
+  font-style: italic;
+  font-weight: 900;
+  font-size: 3.75rem; /* text-6xl */
+  background-color: #dc2626; /* bg-red-600 */
+  color: white;
+  padding: 2.5rem 5rem; /* py-10 px-20 */
+}
+
+/* Mobile (half width + smaller font + smaller padding) */
+@media (max-width: 640px) {
+  .banner-title {
+    width: 50%;
+    font-size: 1.5rem; /* ~text-2xl */
+    padding: 1rem 1.5rem; /* smaller padding */
+  }
+}

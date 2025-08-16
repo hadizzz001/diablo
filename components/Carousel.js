@@ -50,9 +50,10 @@ const MyCarousel = () => {
               muted
               playsInline
             />
-            <div className="text-6xl italic font-black absolute bottom-4 left-4 bg-red-600 text-white px-20 py-10  ">
-              {banner.name || `Video ${index + 1}`}
-            </div>
+<div className="banner-title">
+  {banner.name || `Video ${index + 1}`}
+</div>
+
           </SwiperSlide>
         ))}
       </Swiper>
