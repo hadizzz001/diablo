@@ -16,7 +16,7 @@ const YourComponent = () => {
       const response = await fetch('/api/productss', { cache: 'no-store' });
       if (response.ok) {
         const data = await response.json();
-        setAllTemps(data.slice(-20)); // last 5 items
+        setAllTemps(data.slice(-21)); // last 5 items
       } else {
         console.error('Failed to fetch categories');
       }
@@ -43,9 +43,9 @@ const YourComponent = () => {
                   className="mb-5 grid grid-cols-2 md:grid-cols-3 gap-4"
                   style={{ maxWidth: "100%" }}
                 >
-                  {allTemps.map((temp) => (
+                  {allTemps.map((temp, index) => (
                     <div key={temp.id}>
-                      <CarCard temp={temp} />
+                      <CarCard temp={temp} index={index}/>
                     </div>
                   ))}
                 </section>

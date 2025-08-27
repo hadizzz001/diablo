@@ -11,7 +11,8 @@ const QuantitySelector = ({ initialQty = 1, productId, onChange, type, selectedC
     const fetchStock = async () => {
       try {
         const response = await fetch(`/api/stock/${productId}`);
-        const data = await response.json();
+        const data = await response.json(); 
+        
 
         if (response.ok && data.stock) {
           setMaxStock(parseInt(data.stock, 10));
@@ -26,9 +27,7 @@ const QuantitySelector = ({ initialQty = 1, productId, onChange, type, selectedC
     const fetchStock1 = async () => {
       try {
         const response = await fetch(`/api/stock1/${productId},${selectedColor}`);
-        const data = await response.json();
-
-        console.log("data123: ", data);
+        const data = await response.json(); 
 
         if (response.ok && data.qty) {
           setMaxStock(parseInt(data.qty, 10));
@@ -40,9 +39,9 @@ const QuantitySelector = ({ initialQty = 1, productId, onChange, type, selectedC
       }
     };
 
-const fetchStock2 = async () => {
+const fetchStock2 = async () => { 
   try {
-    const response = await fetch(`/api/stock2/${productId},${selectedColor},${selectedSize}`);
+    const response = await fetch(`/api/stock2/${productId},${selectedColor},${encodeURIComponent(selectedSize)}`);
     const data = await response.json();
 
     console.log("data444: ", data);
@@ -62,27 +61,27 @@ const fetchStock2 = async () => {
 
 
     if (type === "collection") {
-      if (productId && selectedColor && selectedSize) { 
+      if (productId && selectedColor && selectedSize) {   
         fetchStock2();
       }
       else {
         fetchStock1();
       }
 
-    } else {
+    } else {  
       fetchStock();
     }
   }, [productId, selectedColor, selectedSize]);
 
 
-  const handleIncrement = () => {
+  const handleIncrement = () => { 
     if (maxStock !== null && qty < maxStock) { // Prevent exceeding max stock
       setQty(qty + 1);
       onChange(qty + 1);
     }
   };
 
-  const handleDecrement = () => {
+  const handleDecrement = () => { 
     if (qty > 1) {
       setQty(qty - 1);
       onChange(qty - 1);

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'next/navigation'
+import CarCard from '../../components/CarCard';
 
 
 
@@ -105,94 +106,7 @@ const Body = () => {
 
                 {allTemp && allTemp.length > 0 ? (
                   allTemp.map((item, index) => (
-                    <a href={`/product?id=${item._id}`}  >
-                      <div
-                        key={item._id}
-                        className="br_grid br_grid-cols-1 supports-subgrid:br_row-span-4 supports-subgrid:br_grid-rows-[subgrid]"
-                      >
-<div className="relative inline-block w-full max-w-[300px] aspect-square">
-  <img
-    src={item.img[0]}
-    alt="Default"
-    className="w-full h-full object-contain object-center rounded bg-white"
-  />
-
-  {(
-    (item.type === 'single' && parseInt(item.stock) === 0) ||
-    (item.type === 'collection' &&
-      item.color?.every(color =>
-        color.sizes?.every(size => parseInt(size.qty) === 0)
-      )
-    )
-  ) && (
-    <div className="absolute inset-0 bg-gray-600 bg-opacity-70 text-white flex items-center justify-center text-lg font-bold z-10 rounded">
-      Out of Stock
-    </div>
-  )}
-</div>
-
-
-
-
-                        <div className="Layout br_contents">
-                          <span className="br_contents br_edition-">
-                            <div className="br_grid br_grid-cols-1 br_grid-rows-[auto_auto_1fr_auto] supports-subgrid:br_row-span-4 supports-subgrid:br_grid-rows-[subgrid] initial:br_text-white apex:br_bg-[#4e4e4e] apex:br_text-white br_gap-2 br_pb-3 br_group/tile br_relative">
-                              <div
-                                style={{ textAlign: "center" }}
-                                className="initial:br_row-span-1 br_col-start-1 br_row-start-2 br_px-3 group-[.centered]/tile:br_justify-center group-[.centered]/tile:br_text-center"
-                              >
-                                <h3 className="myNewC br_text-base-sans-spaced br_line-clamp-2 sm:br_line-clamp-none edition:br_text-grey-500 edition:br_hidden first:edition:br_inline edition:before:br_content-['_–_'] apex:edition:br_text-grey-300">
-                                  <a
-                                    href={`/product?id=${item._id}`}
-                                    className="br_text-current br_no-underline myGray"
-                                    id="anchorNew"
-                                  >
-                                    {item.title}
-                                    <span
-                                      className="br_absolute br_inset-0 br_z-10"
-                                      aria-hidden="true"
-                                    />
-                                  </a>
-                                </h3>
-                                <div className="price-container br_inline-flex br_flex-wrap br_gap-x-2 br_items-baseline  group-[.centered]/tile:br_justify-center">
-                                  <span className="font-light text-[13px] py-1 line-through text-gray-400 float-left  ">
-                                    {!item.color?.some(c => c.sizes?.length > 0) && (
-                                      <span>${parseFloat(item.price).toFixed(2)}</span>
-                                    )}
-
-                                  </span>
-                                  <span className="font-light text-[13px] py-1 rounded myRed float-left">
-                                    {/* ${parseFloat(item.discount).toFixed(2)} */}
-                                    {item.type === 'single' || (item.type === 'collection' && !item.color)
-                                      ? (`$${item.discount}` || 'N/A')
-                                      : (item.type === 'collection' && item.color && item.color.some(c => c.sizes?.length)
-                                        ? (() => {
-                                          // Flatten all sizes' prices
-                                          const prices = item.color
-                                            .flatMap(c => c.sizes || [])
-                                            .map(s => s.price);
-
-                                          if (prices.length === 0) return 'N/A';
-
-                                          const minPrice = Math.min(...prices);
-                                          const maxPrice = Math.max(...prices);
-
-                                          return minPrice === maxPrice
-                                            ? `$${minPrice.toFixed(2)}`
-                                            : `$${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`;
-                                        })()
-                                        : `$${item.discount}`
-                                      )
-                                    } 
-                                  </span>
-                                </div>
-                                <br />
-                              </div>
-                            </div>
-                          </span>
-                        </div>
-                      </div>
-                    </a>
+ <CarCard temp={item} index={index}/>
                   ))
                 ) : (
                   <div className="home___error-container">

@@ -27,11 +27,11 @@ const SLoader = ({ onComplete }) => {
         transition={{ duration: 2, ease: "easeInOut" }}
       >
         <img
-          src="ani.gif"
+          src="gif.gif"
           alt="S Loader"
-          width={200}
-          height={200}
-          className="w-48 h-48 object-contain"
+          width={500}
+          height={500}
+          className="w-80 h-80 object-contain"
         />
       </motion.div>
     </div>

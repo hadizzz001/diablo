@@ -74,6 +74,8 @@ export async function PATCH(request) {
 export async function GET(request, { params }) {
   // Expecting params.id like "productId,color,size"
   const [id, color, size] = params.id.split(','); 
+ 
+
 
   try {
     const client = await clientPromise;

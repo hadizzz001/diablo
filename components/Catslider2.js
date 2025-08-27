@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -28,7 +28,8 @@ const ResponsiveVideo = () => {
 
   return (
     <div className="container mx-auto px-4 mt-10 mb-10">
-      <div className="grid grid-cols-4 gap-4">
+<div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
         {categories.map((category, index) => (
           <motion.div
             key={index}
@@ -38,19 +39,27 @@ const ResponsiveVideo = () => {
             transition={{ duration: 1.2 }}
             viewport={{ once: true }}
           >
+            {/* Image Container with white padding and square */}
             <div
-              className="w-24 h-24 sm:w-40 sm:h-40 bg-gray-100 rounded-full flex justify-center items-center cursor-pointer overflow-hidden"
+              className="mywidthhere aspect-square bg-white flex justify-center items-center cursor-pointer overflow-hidden p-2"
+              style={{ border: '1px solid #ddd' }}
               onClick={() => handleCategoryClick(category.name)}
             >
               <img
-                src={category.img[0]}
+                src={category.img[0].replace('/upload/', '/upload/q_25/')}
                 alt={category.name}
-                className="w-full h-full object-contain max-w-[80%] max-h-[80%]"
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
               />
             </div>
 
+            {/* Full width text background matching image */}
             <h3
-              className="mt-2 text-sm sm:text-lg font-semibold text-center text-gray-800 cursor-pointer"
+              className="mywidthhere text-lg sm:text-2xl font-bold text-center text-white cursor-pointer bg-red-600 px-2 py-2 mt-2"
               onClick={() => handleCategoryClick(category.name)}
             >
               {category.name}

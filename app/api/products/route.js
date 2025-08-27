@@ -11,7 +11,7 @@ export async function GET() {
 
     // Exclude documents where category is "Pool Trays"
     const data = await collection
-      .find({ category: { $ne: 'Pool Trays' } })
+      .find( )
       .sort({ _id: -1 })
       .toArray();
 

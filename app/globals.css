@@ -1724,3 +1724,54 @@
     padding: 1rem 1.5rem; /* smaller padding */
   }
 }
+
+
+
+
+ #mymobfoot {
+   display: none !important;
+ }
+
+ .myRights{
+  font-size: 18px !important;
+ }
+
+ .myfp{
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: red;
+ }
+
+ .colorp{
+  font-size: 19px !important;
+  font-weight: 500 !important;
+  color: black;
+ }
+
+    .mynewpadstyle{
+    padding: 0em; 
+   }
+
+   .mywidthhere{
+    width: 250px !important;
+   }
+
+ @media (max-width: 768px) { 
+
+     .mywidthhere{
+    width: 200px !important;
+   }
+   #mymobfoot {
+     display: block !important;
+   }
+
+   .mynewpadstyle{
+    padding-left: 1em;
+    padding-right: 1em;
+   }
+ }
+
+
+ .swiper-button-prev, .swiper-button-next{
+  color: white !important;
+ }

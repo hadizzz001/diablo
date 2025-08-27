@@ -1,4 +1,3 @@
- 
 import clientPromise from '../../lib/mongodb';
 import { NextResponse } from 'next/server';
 
@@ -38,26 +37,23 @@ export async function GET(req) {
 
     if (sub) {
       console.log(`Subcategory filter applied: ${sub}`);
-      
       query.sub = { $regex: `^${sub}$`, $options: 'i' };
     }
 
     if (brnd) {
-      console.log(`brnd filter applied: ${brnd
-
-      }`);
+      console.log(`brnd filter applied: ${brnd}`);
       query.factory = { $regex: `^${brnd}$`, $options: 'i' };
     }
 
     const total = await collection.countDocuments(query);
 
     const data = await collection.find(query)
-      .sort({ sort: 1 })  // Sort by 'sort' ascending
+      .sort({ sort: 1, _id: 1 }) // ✅ deterministic sort: avoids duplicates across pages
       .skip(skip)
       .limit(limit)
       .toArray();
 
-    // Log category, sub, factory for each item
+    // Debug logging
     data.forEach(item => {
       console.log(`Category: ${item.category || 'N/A'}, Sub: ${item.sub || 'N/A'}, Factory: ${item.factory || 'N/A'}`);
     });
@@ -66,6 +62,7 @@ export async function GET(req) {
       currentPage: page,
       totalPages: Math.ceil(total / limit),
       totalItems: total,
+      hasMore: page * limit < total, // ✅ frontend can know if more pages exist
       products: data,
     });
 
