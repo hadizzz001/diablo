@@ -62,9 +62,9 @@ const Footer = () => {
                     <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231450/icon_sofort_footer_ggbmjy.webp" alt="MasterCard" className="h-10" />
                     <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/Klarna_Payment_Badge_iglzex.svg" alt="PayPal" className="h-10" />
                     <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231450/icon_amazonpay_footer_tkdjol.webp" alt="American Express" className="h-10" />
-                    <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/icon_mastercard_footer_cfsb4w.webp" alt="Apple Pay" className="h-10" /> 
-                    <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/download_q2d8zb.png" alt="Apple Pay" className="h-10" /> 
-                    <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/icon_paypal_footer_hjtb3i.webp" alt="Apple Pay" className="h-10" />  
+                    <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/icon_mastercard_footer_cfsb4w.webp" alt="Apple Pay" className="h-10" />
+                    <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/download_q2d8zb.png" alt="Apple Pay" className="h-10" />
+                    <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/icon_paypal_footer_hjtb3i.webp" alt="Apple Pay" className="h-10" />
                 </div>
 
                 {/* Delivery Brands */}
@@ -73,7 +73,7 @@ const Footer = () => {
                     <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/icon_amex_footer_vttyqp.webp" alt="DHL" className="h-10" />
                     <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/icon_vorkasse_footer_ulluzy.webp" alt="FedEx" className="h-10" />
                     <img src="https://res.cloudinary.com/dlqj4aigl/image/upload/v1756231449/images_kamftn.jpg" alt="UPS" className="h-10" />
- 
+
                 </div>
             </div>
 
@@ -177,15 +177,15 @@ const Footer = () => {
                     </a>
 
                     {/* Phone */}
-<a href="tel:+9613762543" className="flex flex-col items-center text-gray-700">
-  <div
-    className="flex items-center justify-center rounded-full bg-[red]"
-    style={{ width: "60px", height: "60px" }}
-  >
-    <FaPhone style={{ fontSize: "40px", color: "white" }} />
-  </div>
-  <span className="colorp mt-2">+9613762543</span>
-</a>
+                    <a href="tel:+9613762543" className="flex flex-col items-center text-gray-700">
+                        <div
+                            className="flex items-center justify-center rounded-full bg-[red]"
+                            style={{ width: "60px", height: "60px" }}
+                        >
+                            <FaPhone style={{ fontSize: "40px", color: "white" }} />
+                        </div>
+                        <span className="colorp mt-2">+9613762543</span>
+                    </a>
 
                 </div>
 
@@ -253,8 +253,8 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="flex flex-col items-center"
                     >
-                        <div className="flex items-center justify-center rounded-full" style={{ background: "linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4)", width: "60px", height: "60px" }}>
-                            <FaInstagram style={{ fontSize: "40px", color: "white" }} />
+                        <div className="flex items-center justify-center rounded-full" style={{ background: "linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4)", width: "35px", height: "35px" }}>
+                            <FaInstagram style={{ fontSize: "25px", color: "white" }} />
                         </div>
                     </a>
 
@@ -265,8 +265,8 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="flex flex-col items-center"
                     >
-                        <div className="flex items-center justify-center rounded-full bg-[#1877F2]" style={{ width: "60px", height: "60px" }}>
-                            <FaFacebookF style={{ fontSize: "40px", color: "white" }} />
+                        <div className="flex items-center justify-center rounded-full bg-[#1877F2]" style={{ width: "35px", height: "35px" }}>
+                            <FaFacebookF style={{ fontSize: "25px", color: "white" }} />
                         </div>
                     </a>
 
@@ -277,8 +277,8 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="flex flex-col items-center"
                     >
-                        <div className="flex items-center justify-center rounded-full bg-[#25D366]" style={{ width: "60px", height: "60px" }}>
-                            <FaWhatsapp style={{ fontSize: "40px", color: "white" }} />
+                        <div className="flex items-center justify-center rounded-full bg-[#25D366]" style={{ width: "35px", height: "35px" }}>
+                            <FaWhatsapp style={{ fontSize: "25px", color: "white" }} />
                         </div>
                     </a>
 
@@ -289,21 +289,21 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="flex flex-col items-center"
                     >
-                        <div className="flex items-center justify-center rounded-full bg-black" style={{ width: "60px", height: "60px" }}>
-                            <FaTiktok style={{ fontSize: "40px", color: "white" }} />
+                        <div className="flex items-center justify-center rounded-full bg-black" style={{ width: "35px", height: "35px" }}>
+                            <FaTiktok style={{ fontSize: "25px", color: "white" }} />
                         </div>
                     </a>
 
                     {/* Phone */}
-<a href="tel:+9613762543" className="flex flex-col items-center text-gray-700">
-  <div
-    className="flex items-center justify-center rounded-full bg-[red]"
-    style={{ width: "60px", height: "60px" }}
-  >
-    <FaPhone style={{ fontSize: "40px", color: "white" }} />
-  </div>
-  <span className="colorp mt-2">+9613762543</span>
-</a>
+                    <a href="tel:+9613762543" className="flex flex-col items-center text-gray-700">
+                        <div
+                            className="flex items-center justify-center rounded-full bg-[red]"
+                            style={{ width: "35px", height: "35px" }}
+                        >
+                            <FaPhone style={{ fontSize: "25px", color: "white" }} />
+                        </div>
+                        <span className="colorp mt-2">+9613762543</span>
+                    </a>
 
                 </div>
 
