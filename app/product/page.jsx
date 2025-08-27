@@ -251,53 +251,58 @@ incrementViews123();
               <div className=" container">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       {/* LEFT: Swipe gallery */}
- <div className="w-full">
-      {imgs && imgs.length > 0 ? (
-        <>
-          {/* Main Swiper */}
-          <Swiper
-            modules={[Pagination, Thumbs]}
-            pagination={{ clickable: true }}
-            spaceBetween={10}
-            slidesPerView={1}
-            thumbs={{ swiper: thumbsSwiper }}
-            className="rounded-lg overflow-hidden"
-          >
-            {imgs.map((item, idx) => (
-              <SwiperSlide key={idx}>
-                <img
-                  src={item.replace("/upload/", "/upload/q_25/")}
-                  alt=""
-                  className="w-full h-auto object-contain"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+<div className="w-full">
+  {imgs && imgs.length > 0 ? (
+    <>
+      {/* Main Swiper */}
+      <Swiper
+        modules={[Pagination, Thumbs]}
+        pagination={{ clickable: true }}
+        spaceBetween={10}
+        slidesPerView={1}
+        thumbs={{ swiper: thumbsSwiper }}
+        className="rounded-lg overflow-hidden"
+      >
+        {imgs.map((item, idx) => (
+          <SwiperSlide key={idx} className="flex justify-center items-center  ">
+            <div className="w-full aspect-square flex justify-center items-center">
+              <img
+                src={item.replace("/upload/", "/upload/q_25/")}
+                alt=""
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-          {/* Thumbnails Swiper */}
-          <Swiper
-            onSwiper={setThumbsSwiper}
-            modules={[Thumbs]}
-            spaceBetween={10}
-            slidesPerView={4}
-            watchSlidesProgress
-            className="mt-3"
-          >
-            {imgs.map((item, idx) => (
-              <SwiperSlide key={idx} className="cursor-pointer">
-                <img
-                  src={item.replace("/upload/", "/upload/q_25,w_100/")}
-                  alt=""
-                  className="w-full h-20 object-cover rounded-md border border-gray-300"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </>
-      ) : (
-        <div className="text-gray-600">No images available</div>
-      )}
-    </div>
+      {/* Thumbnails Swiper */}
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        modules={[Thumbs]}
+        spaceBetween={10}
+        slidesPerView={4}
+        watchSlidesProgress
+        className="mt-3"
+      >
+        {imgs.map((item, idx) => (
+          <SwiperSlide key={idx} className="cursor-pointer">
+            <div className="w-full aspect-square overflow-hidden rounded-md border border-gray-300">
+              <img
+                src={item.replace("/upload/", "/upload/q_25,w_100/")}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
+  ) : (
+    <div className="text-gray-600">No images available</div>
+  )}
+</div>
+
 
       {/* RIGHT: ProductSelector (your data block) */}
       <section className="ProductSelector">
