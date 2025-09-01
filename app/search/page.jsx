@@ -130,37 +130,56 @@ const Body = () => {
 
               </div>
 
-              <div className="mt-4 mb-4 flex justify-center items-center space-x-4">
-                <button
-                  onClick={() => setPage(p => Math.max(p - 1, 1))}
-                  disabled={page === 1}
-                  className="px-4 py-2 rounded disabled:opacity-50 myGray text-3xl"
-                  style={{ color: '#999' }}
-                >
-                  &#8592;
-                </button>
+<div className="mt-4 mb-4 flex justify-center items-center space-x-4">
+  <button
+    onClick={() => {
+      setPage(p => Math.max(p - 1, 1));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+    disabled={page === 1}
+    className="px-4 py-2 rounded disabled:opacity-50 myGray text-3xl"
+    style={{ color: '#999' }}
+  >
+    &#8592;
+  </button>
 
-                <span
-                  className="flex items-center justify-center text-white text-[11px]"
-                  style={{
-                    width: '30px',
-                    height: '30px',
-                    backgroundColor: '#fd342d',
-                    borderRadius: '50%',
-                  }}
-                >
-                  {page}
-                </span>
+  {/* Page numbers */}
+  <div className="flex items-center space-x-2">
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
+      <button
+        key={num}
+        onClick={() => {
+          setPage(num);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        className={`flex items-center justify-center text-white text-[11px] px-2 py-1 rounded-full ${
+          page === num ? 'bg-[#fd342d]' : 'bg-gray-700'
+        }`}
+        style={{
+          width: '30px',
+          height: '30px',
+          borderRadius: '50%',
+          fontWeight: page === num ? 'bold' : 'normal',
+        }}
+        disabled={page === num}
+      >
+        {num}
+      </button>
+    ))}
+  </div>
 
-                <button
-                  onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-                  disabled={page === totalPages}
-                  className="px-4 py-2 rounded disabled:opacity-50 myGray text-3xl"
-                  style={{ color: '#999' }}
-                >
-                  &#8594;
-                </button>
-              </div>
+  <button
+    onClick={() => {
+      setPage(p => Math.min(p + 1, totalPages));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+    disabled={page === totalPages}
+    className="px-4 py-2 rounded disabled:opacity-50 myGray text-3xl"
+    style={{ color: '#999' }}
+  >
+    &#8594;
+  </button>
+</div>
 
             </div>
           </div>

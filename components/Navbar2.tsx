@@ -12,7 +12,7 @@ function DesktopNav({ categories }) {
       <ul className="flex gap-10">
         {categories.map((cat) => (
           <li key={cat.id}>
-            <a href={`/category/${cat.id}`} className="hover:underline">{cat.name}</a>
+            <a href={`/search?cat=${cat.name}`} className="hover:underline">{cat.name}</a>
           </li>
         ))}
       </ul>
@@ -132,7 +132,7 @@ export default function NavBar() {
           <nav className="flex flex-col items-center gap-6 mt-12 text-3xl font-bold">
             <a href="/shop" onClick={() => setMenuOpen(false)}>All Categories</a>
             {categories.map((cat) => (
-              <a key={cat.id} href={`/category/${cat.id}`} onClick={() => setMenuOpen(false)}>
+              <a key={cat.id} href={`/search?cat=${cat.name}`} onClick={() => setMenuOpen(false)}>
                 {cat.name}
               </a>
             ))}
