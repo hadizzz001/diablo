@@ -1775,3 +1775,8 @@
  .swiper-button-prev, .swiper-button-next{
   color: white !important;
  }
+
+
+ .myZimg{
+  z-index: 999999999999999999 !important;
+ }

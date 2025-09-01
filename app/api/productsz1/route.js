@@ -19,12 +19,13 @@ export async function GET(req) {
     const cat = searchParams.get('cat');
     const sub = searchParams.get('sub');
     const brnd = searchParams.get('brnd');
+    const sizes = searchParams.getAll('size'); // ✅ collect multiple size filters
 
     // Build MongoDB query
     const query = {};
 
     if (search) {
-      query.title = { $regex: search, $options: 'i' }; // case-insensitive partial match
+      query.title = { $regex: search, $options: 'i' };
     }
 
     if (cat) {
@@ -36,33 +37,30 @@ export async function GET(req) {
     }
 
     if (sub) {
-      console.log(`Subcategory filter applied: ${sub}`);
       query.sub = { $regex: `^${sub}$`, $options: 'i' };
     }
 
     if (brnd) {
-      console.log(`brnd filter applied: ${brnd}`);
       query.factory = { $regex: `^${brnd}$`, $options: 'i' };
+    }
+
+    if (sizes.length > 0) {
+      query["color.sizes.size"] = { $in: sizes }; // ✅ size filter
     }
 
     const total = await collection.countDocuments(query);
 
     const data = await collection.find(query)
-      .sort({ sort: 1, _id: 1 }) // ✅ deterministic sort: avoids duplicates across pages
+      .sort({ sort: 1, _id: 1 })
       .skip(skip)
       .limit(limit)
       .toArray();
-
-    // Debug logging
-    data.forEach(item => {
-      console.log(`Category: ${item.category || 'N/A'}, Sub: ${item.sub || 'N/A'}, Factory: ${item.factory || 'N/A'}`);
-    });
 
     return NextResponse.json({
       currentPage: page,
       totalPages: Math.ceil(total / limit),
       totalItems: total,
-      hasMore: page * limit < total, // ✅ frontend can know if more pages exist
+      hasMore: page * limit < total,
       products: data,
     });
 

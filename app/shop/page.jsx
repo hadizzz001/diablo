@@ -19,6 +19,27 @@ const Body = () => {
   const [checkedFactories, setCheckedFactories] = useState([]);
   const [checkedSizes, setCheckedSizes] = useState([]);
   const [allSizes, setAllSizes] = useState([]);
+  const [allAvailableSizes, setAllAvailableSizes] = useState([]); // <-- Add this
+
+  // Fetch all sizes once on mount (unfiltered)
+  useEffect(() => {
+    const fetchAllSizes = async () => {
+      const res = await fetch(`/api/productsz1?page=1&limit=1000`); // adjust limit as needed
+      const data = await res.json();
+      const sizesSet = new Set();
+      if (data.products && Array.isArray(data.products)) {
+        data.products.forEach(prod => {
+          prod.color?.forEach(colorObj => {
+            colorObj.sizes?.forEach(sizeObj => {
+              if (sizeObj.size) sizesSet.add(sizeObj.size);
+            });
+          });
+        });
+      }
+      setAllAvailableSizes(Array.from(sizesSet));
+    };
+    fetchAllSizes();
+  }, []);
 
   const fetchProducts = async (pageNum = 1) => {
     const params = new URLSearchParams();
@@ -29,7 +50,7 @@ const Body = () => {
     checkedCategories.forEach(cat => params.append('cat', cat));
     checkedSubCategories.forEach(sub => params.append('sub', sub));
     checkedFactories.forEach(fac => params.append('brnd', fac));
-    checkedSizes.forEach(size => params.append('size', size)); // Add size param
+    checkedSizes.forEach(size => params.append('size', size));
 
     const res = await fetch(`/api/productsz1?${params.toString()}`);
     const data = await res.json();
@@ -37,7 +58,8 @@ const Body = () => {
     setTemp(data.products);
     setTotalPages(data.totalPages);
 
-    // Extract unique sizes from products
+    // You can still update allSizes for filtered products if you want,
+    // but use allAvailableSizes for rendering checkboxes!
     const sizesSet = new Set();
     if (data.products && Array.isArray(data.products)) {
       data.products.forEach(prod => {
@@ -412,7 +434,7 @@ const Body = () => {
                   </h3>
                 </summary>
                 <div className="br_my-2 md:br_my-4 md:br_h-full br_w-full br_gap-x-5 br_columns-2 md:br_columns-1">
-                  {allSizes.map((size) => (
+                  {allAvailableSizes.map((size) => (
                     <div
                       key={size}
                       className="br_block br_relative br_max-w-full br_w-full br_py-2 br_break-inside-avoid md:br_inline-block md:br_overflow-hidden md:br_m-0 md:br_p-0"
@@ -524,17 +546,30 @@ const Body = () => {
     &#8592;
   </button>
 
-  <span
-    className="flex items-center justify-center text-white text-[11px]"
-    style={{
-      width: '30px',
-      height: '30px',
-      backgroundColor: '#fd342d',
-      borderRadius: '50%',
-    }}
-  >
-    {page}
-  </span>
+  {/* Page numbers */}
+  <div className="flex items-center space-x-2">
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
+      <button
+        key={num}
+        onClick={() => {
+          setPage(num);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        className={`flex items-center justify-center text-white text-[11px] px-2 py-1 rounded-full ${
+          page === num ? 'bg-[#fd342d]' : 'bg-gray-700'
+        }`}
+        style={{
+          width: '30px',
+          height: '30px',
+          borderRadius: '50%',
+          fontWeight: page === num ? 'bold' : 'normal',
+        }}
+        disabled={page === num}
+      >
+        {num}
+      </button>
+    ))}
+  </div>
 
   <button
     onClick={() => {

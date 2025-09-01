@@ -13,6 +13,7 @@ import { Pagination, Thumbs,Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs"; 
+import React from 'react';
 
 const Page = () => {
   const [translateXValue, setTranslateXValue] = useState(0);
@@ -34,9 +35,7 @@ const Page = () => {
   const [hasSizes, setHasSizes] = useState(false);
  const [thumbsSwiper, setThumbsSwiper] = useState(null);
  const hasRun = useRef(false);
-
-
-
+ const [zoomedImg, setZoomedImg] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -238,6 +237,23 @@ incrementViews123();
         }}
       />
 
+      {/* Zoom Modal */}
+      {zoomedImg && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80"
+          onClick={() => setZoomedImg(null)}
+          style={{ cursor: "zoom-out", zIndex: 9999 }} // Increased z-index here
+        >
+          <img
+            src={zoomedImg}
+            alt="Zoomed"
+            className="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg  myZimg"
+            onClick={e => e.stopPropagation()}
+            style={{ cursor: "default" }}
+          />
+        </div>
+      )}
+
       <div className="ProductDetailWrapper  md:mt-20  mt-20">
         <div className="BreadcrumbsWrapper">
           <div className="br_flex br_px-6 xl:br_px-0 br_text-xs-sans-bold-stretched br_text-[12px] br_text-grey-400 br_h-12 br_items-center">
@@ -269,7 +285,8 @@ incrementViews123();
               <img
                 src={item.replace("/upload/", "/upload/q_25/")}
                 alt=""
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain cursor-zoom-in"
+                onClick={() => setZoomedImg(item.replace("/upload/", "/upload/q_80/"))}
               />
             </div>
           </SwiperSlide>
