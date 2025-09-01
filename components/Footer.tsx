@@ -154,7 +154,7 @@ const Footer = () => {
 
                     {/* WhatsApp */}
                     <a
-                        href="https://wa.me/9613762543"
+                        href="https://wa.me/96181820902"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex flex-col items-center"
@@ -177,14 +177,14 @@ const Footer = () => {
                     </a>
 
                     {/* Phone */}
-                    <a href="tel:+9613762543" className="flex flex-col items-center text-gray-700">
+                    <a href="tel:+96181820902" className="flex flex-col items-center text-gray-700">
                         <div
                             className="flex items-center justify-center rounded-full bg-[red]"
                             style={{ width: "60px", height: "60px" }}
                         >
                             <FaPhone style={{ fontSize: "40px", color: "white" }} />
                         </div>
-                        <span className="colorp mt-2">+9613762543</span>
+                        <span className="colorp mt-2">+96181820902</span>
                     </a>
 
                 </div>
@@ -272,7 +272,7 @@ const Footer = () => {
 
                     {/* WhatsApp */}
                     <a
-                        href="https://wa.me/9613762543"
+                        href="https://wa.me/96181820902"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex flex-col items-center"
@@ -295,14 +295,14 @@ const Footer = () => {
                     </a>
 
                     {/* Phone */}
-                    <a href="tel:+9613762543" className="flex flex-col items-center text-gray-700">
+                    <a href="tel:+96181820902" className="flex flex-col items-center text-gray-700">
                         <div
                             className="flex items-center justify-center rounded-full bg-[red]"
                             style={{ width: "35px", height: "35px" }}
                         >
                             <FaPhone style={{ fontSize: "25px", color: "white" }} />
                         </div>
-                        <span className="colorp mt-2">+9613762543</span>
+                        <span className="colorp mt-2">+96181820902</span>
                     </a>
 
                 </div>
