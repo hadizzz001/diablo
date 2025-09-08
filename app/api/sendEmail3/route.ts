@@ -1,6 +1,18 @@
 // app/api/sendEmail2/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import { sendEmail2 } from '../sendEmail2/sendEmail2'; // adjust path if needed
+import { NextRequest, NextResponse } from "next/server";
+import { sendEmail2 } from "../sendEmail2/sendEmail2"; // adjust path if needed
+
+// Handle preflight (CORS)
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,9 +34,27 @@ export async function POST(req: NextRequest) {
 
     await sendEmail2(formData);
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
+    return new NextResponse(
+      JSON.stringify({ success: true }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
+  } catch (error: any) {
     console.error("Email API error:", error);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    return new NextResponse(
+      JSON.stringify({ success: false, error: error.message }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
   }
 }
