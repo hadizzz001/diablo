@@ -48,10 +48,22 @@ export async function GET(req) {
     // Build MongoDB query
     const query = {};
 
+    // 🔍 Tokenized fuzzy search
     if (search) {
-      query.title = { $regex: `${search}\\s*$`, $options: "i" };
+      const tokens = search.split(/\s+/).filter(Boolean); // split by spaces
+      query.$and = tokens.map((token) => ({
+        $or: [
+          { title: { $regex: token, $options: "i" } },
+          { category: { $regex: token, $options: "i" } },
+          { sub: { $regex: token, $options: "i" } },
+          { factory: { $regex: token, $options: "i" } },
+          { "color.sizes.size": { $regex: token, $options: "i" } },
+          { "color.name": { $regex: token, $options: "i" } },
+        ],
+      }));
     }
 
+    // 🏷️ Category filter
     if (cat) {
       if (cat === "yes") {
         query.arrival = "yes";
@@ -60,22 +72,27 @@ export async function GET(req) {
       }
     }
 
+    // 🏷️ Subcategory filter
     if (sub) {
       query.sub = { $regex: `^${sub}\\s*$`, $options: "i" };
     }
 
+    // 🏷️ Brand/Factory filter
     if (brnd) {
       query.factory = { $regex: `^${brnd}\\s*$`, $options: "i" };
     }
 
+    // 🏷️ Size filter
     if (sizes.length > 0) {
       query["color.sizes.size"] = { $in: sizes };
     }
 
     console.log("📝 MONGO QUERY:", query);
 
+    // Count total
     const total = await collection.countDocuments(query);
 
+    // Fetch paginated results
     const data = await collection
       .find(query)
       .sort({ sort: 1, _id: 1 })
