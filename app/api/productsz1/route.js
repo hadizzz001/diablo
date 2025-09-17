@@ -27,38 +27,52 @@ export async function GET(req) {
     const limit = parseInt(searchParams.get("limit") || "10");
     const skip = (page - 1) * limit;
 
-    const search = searchParams.get("q");
-    const cat = searchParams.get("cat");
-    const sub = searchParams.get("sub");
-    const brnd = searchParams.get("brnd");
-    const sizes = searchParams.getAll("size"); // ✅ collect multiple size filters
+    // Raw params
+    const rawSearch = searchParams.get("q");
+    const rawCat = searchParams.get("cat");
+    const rawSub = searchParams.get("sub");
+    const rawBrnd = searchParams.get("brnd");
+    const rawSizes = searchParams.getAll("size");
+
+    // Trimmed params
+    const search = rawSearch?.trim();
+    const cat = rawCat?.trim();
+    const sub = rawSub?.trim();
+    const brnd = rawBrnd?.trim();
+    const sizes = rawSizes.map((s) => s.trim());
+
+    // Debug logs
+    console.log("🔎 RAW PARAMS:", { rawSearch, rawCat, rawSub, rawBrnd, rawSizes });
+    console.log("✂️ TRIMMED PARAMS:", { search, cat, sub, brnd, sizes });
 
     // Build MongoDB query
     const query = {};
 
     if (search) {
-      query.title = { $regex: search, $options: "i" };
+      query.title = { $regex: `${search}\\s*$`, $options: "i" };
     }
 
     if (cat) {
       if (cat === "yes") {
         query.arrival = "yes";
       } else {
-        query.category = { $regex: `^${cat}$`, $options: "i" };
+        query.category = { $regex: `^${cat}\\s*$`, $options: "i" };
       }
     }
 
     if (sub) {
-      query.sub = { $regex: `^${sub}$`, $options: "i" };
+      query.sub = { $regex: `^${sub}\\s*$`, $options: "i" };
     }
 
     if (brnd) {
-      query.factory = { $regex: `^${brnd}$`, $options: "i" };
+      query.factory = { $regex: `^${brnd}\\s*$`, $options: "i" };
     }
 
     if (sizes.length > 0) {
-      query["color.sizes.size"] = { $in: sizes }; // ✅ size filter
+      query["color.sizes.size"] = { $in: sizes };
     }
+
+    console.log("📝 MONGO QUERY:", query);
 
     const total = await collection.countDocuments(query);
 
@@ -68,6 +82,8 @@ export async function GET(req) {
       .skip(skip)
       .limit(limit)
       .toArray();
+
+    console.log("📦 FETCHED DATA (first 3):", data.slice(0, 3));
 
     return new NextResponse(
       JSON.stringify({
@@ -86,7 +102,7 @@ export async function GET(req) {
       }
     );
   } catch (error) {
-    console.error("Error fetching data from MongoDB:", error);
+    console.error("❌ Error fetching data from MongoDB:", error);
     return new NextResponse(
       JSON.stringify({ error: "Failed to fetch data" }),
       {
