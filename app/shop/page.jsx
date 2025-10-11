@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CarCard from '../../components/CarCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 
 
@@ -547,10 +549,14 @@ const Body = () => {
   </button>
 
   {/* Page numbers */}
-  <div className="flex items-center space-x-2">
-    {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
+<Swiper
+  slidesPerView="auto"
+  spaceBetween={8}
+  className="mySwiper"
+>
+  {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
+    <SwiperSlide key={num} style={{ width: '40px' }}>
       <button
-        key={num}
         onClick={() => {
           setPage(num);
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -568,8 +574,9 @@ const Body = () => {
       >
         {num}
       </button>
-    ))}
-  </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
 
   <button
     onClick={() => {

@@ -138,6 +138,10 @@ const Page = () => {
 
 
 
+
+
+
+
   function handleClickc() {
     var cartb = document.getElementById("cartid");
     var cartb2 = document.getElementById("cartid2");
@@ -225,6 +229,31 @@ incrementViews123();
       setHasSizes(false);
     }
   }, [color]);
+
+
+
+  useEffect(() => {
+  if (allTemp1 && color && color.length > 0) {
+    // Set the first available color
+    const firstColorObj = availableColorsWithSizes?.[0] || availableColorsWithoutSizes?.[0];
+    if (firstColorObj) {
+      setSelectedColor(firstColorObj.color);
+
+      // If this color has sizes, set the first available size
+      if (firstColorObj.sizes && firstColorObj.sizes.length > 0) {
+        const firstSize = firstColorObj.sizes.find(s => s.qty > 0);
+        if (firstSize) {
+          setSelectedSize(firstSize.size);
+          setDisplayedPrice(firstSize.price);
+        }
+      } else {
+        // If no sizes, set the color price directly
+        setDisplayedPrice(firstColorObj.price ?? null);
+      }
+    }
+  }
+}, [allTemp1]);
+
 
 
 
