@@ -273,13 +273,25 @@ incrementViews123();
           onClick={() => setZoomedImg(null)}
           style={{ cursor: "zoom-out", zIndex: 9999 }} // Increased z-index here
         >
-          <img
-            src={zoomedImg}
-            alt="Zoomed"
-            className="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg  myZimg"
-            onClick={e => e.stopPropagation()}
-            style={{ cursor: "default" }}
-          />
+<Swiper
+  modules={[Pagination]}
+  pagination={{ clickable: true }}
+  spaceBetween={10}
+  slidesPerView={1}
+  onClick={e => e.stopPropagation()}
+  className="w-full max-w-[90vw] max-h-[90vh]"
+>
+  {imgs.map((item, idx) => (
+    <SwiperSlide key={idx} className="flex justify-center items-center">
+      <img
+        src={item.replace("/upload/", "/upload/q_80/")}
+        alt=""
+        className="max-w-[90vw] max-h-[90vh] object-contain"
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
         </div>
       )}
 

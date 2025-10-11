@@ -64,6 +64,10 @@ const Body = () => {
 
 
 
+useEffect(() => {
+  // Scroll to top whenever page changes
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [page]);
 
 
 
