@@ -9,13 +9,15 @@ import { useBooleanValue } from '../context/CartBoolContext';
 import QuantitySelector from '../../components/QuantitySelector';
 import OutOfStockComponent from '../../components/OutOfStockComponent';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Thumbs,Autoplay } from "swiper/modules";
+import { Pagination, Thumbs,Autoplay, Controller } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/thumbs"; 
-import React from 'react';
+import "swiper/css/thumbs";  
+
 
 const Page = () => {
+  const [mainSwiper, setMainSwiper] = useState(null); 
+  const [zoomSwiper, setZoomSwiper] = useState(null);
   const [translateXValue, setTranslateXValue] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const searchParams = useSearchParams();
@@ -255,6 +257,15 @@ incrementViews123();
 }, [allTemp1]);
 
 
+useEffect(() => {
+  if (mainSwiper && zoomSwiper) {
+    mainSwiper.controller.control = zoomSwiper;
+    zoomSwiper.controller.control = mainSwiper;
+  }
+}, [mainSwiper, zoomSwiper]);
+
+
+
 
 
 
@@ -273,13 +284,15 @@ incrementViews123();
           onClick={() => setZoomedImg(null)}
           style={{ cursor: "zoom-out", zIndex: 9999 }} // Increased z-index here
         >
-<Swiper
-  modules={[Pagination]}
+<Swiper 
   pagination={{ clickable: true }}
   spaceBetween={10}
   slidesPerView={1}
   onClick={e => e.stopPropagation()}
   className="w-full max-w-[90vw] max-h-[90vh]"
+        modules={[Pagination, Controller]}
+      onSwiper={setZoomSwiper}  // ✅ Capture zoom swiper
+      controller={{ control: mainSwiper }} // ✅ Sync both!
 >
   {imgs.map((item, idx) => (
     <SwiperSlide key={idx} className="flex justify-center items-center">
@@ -312,13 +325,15 @@ incrementViews123();
   {imgs && imgs.length > 0 ? (
     <>
       {/* Main Swiper */}
-      <Swiper
-        modules={[Pagination, Thumbs]}
+      <Swiper 
         pagination={{ clickable: true }}
         spaceBetween={10}
         slidesPerView={1}
         thumbs={{ swiper: thumbsSwiper }}
         className="rounded-lg overflow-hidden"
+          modules={[Pagination, Thumbs, Controller]}
+  onSwiper={setMainSwiper}   // ✅ Capture instance
+  controller={{ control: zoomSwiper }} // ✅ Link to zoom swiper later
       >
         {imgs.map((item, idx) => (
           <SwiperSlide key={idx} className="flex justify-center items-center  ">
