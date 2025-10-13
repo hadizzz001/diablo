@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import CarCard from '../../components/CarCard'; 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { Triangle } from 'lucide-react';
-
+ 
 
 
 
@@ -59,7 +58,7 @@ const SlidingPagination = ({ page, totalPages, setPage }) => {
           key={p}
           onClick={() => setPage(p)}
           className={`w-8 h-8 border flex items-center justify-center ${
-            p === page ? "bg-white text-black font-bold" : "bg-gray-400 text-white"
+            p === page ? "bg-red-600 text-white font-bold" : "bg-gray-400 text-white"
           }`}
         >
           {p}
