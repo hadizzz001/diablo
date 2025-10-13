@@ -1,9 +1,94 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import CarCard from '../../components/CarCard';
+import CarCard from '../../components/CarCard'; 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { Triangle } from 'lucide-react';
+
+
+
+
+
+
+const SlidingPagination = ({ page, totalPages, setPage }) => {
+  const windowSize = 9;
+  const shift = 4; // how much to slide each time
+
+  // Calculate visible range
+  let start = Math.max(1, Math.min(page - shift, totalPages - windowSize + 1));
+  let end = Math.min(start + windowSize - 1, totalPages);
+
+  // Jump to FIRST page
+  const jumpToStart = () => {
+    setPage(1);
+  };
+
+  // Jump to LAST page
+  const jumpToEnd = () => {
+    setPage(totalPages);
+  };
+
+  return (
+    <div className="flex items-center gap-2 justify-center my-6">
+
+      {/* Jump to START */}
+      {page > 1 && (
+
+<button
+  className="w-8 h-8 flex items-center justify-center"
+  onClick={jumpToStart}
+>
+  <svg
+    className="w-6 h-6 text-gray-400"
+    viewBox="0 0 10 10"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <polygon points="10,0 0,5 10,10" />
+  </svg>
+</button>
+
+
+
+      )}
+
+      {/* Page Buttons */}
+      {Array.from({ length: end - start + 1 }, (_, i) => start + i).map((p) => (
+        <button
+          key={p}
+          onClick={() => setPage(p)}
+          className={`w-8 h-8 border flex items-center justify-center ${
+            p === page ? "bg-white text-black font-bold" : "bg-gray-400 text-white"
+          }`}
+        >
+          {p}
+        </button>
+      ))}
+
+      {/* Jump to END */}
+      {page < totalPages && (
+<button
+  className="w-8 h-8 flex items-center justify-center"
+  onClick={jumpToEnd} // or your "next" handler
+>
+  <svg
+    className="w-6 h-6 text-gray-400"
+    viewBox="0 0 10 10"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <polygon points="0,0 10,5 0,10" />
+  </svg>
+</button>
+
+      )}
+    </div>
+  );
+};
+
+
+
 
 
 
@@ -217,9 +302,9 @@ const Body = () => {
 
 
   useEffect(() => {
-  // Scroll to top whenever page changes
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}, [page]);
+    // Scroll to top whenever page changes
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
 
 
 
@@ -514,6 +599,8 @@ const Body = () => {
 
 
             <div className="br_@container">
+              
+<SlidingPagination page={page} totalPages={totalPages} setPage={setPage} />
               <div
                 className="br_group/tile-grid br_grid br_grid-flow-dense br_gap-1 br_py-1 br_grid-cols-2 sm:br_grid-cols-[repeat(auto-fill,minmax(250px,1fr))] sm:br_px-1 lg:br_grid-cols-[repeat(auto-fill,minmax(285px,1fr))] supports-[container-type]:sm:br_grid-cols-2 supports-[container-type]:sm:@[640px]:br_grid-cols-[repeat(auto-fill,minmax(250px,1fr))] supports-[container-type]:lg:@[1024px]:br_grid-cols-[repeat(auto-fill,minmax(285px,1fr))]"
 
@@ -528,13 +615,13 @@ const Body = () => {
 
                 {allTemp && allTemp.length > 0 ? (
                   allTemp.map((item, index) => (
- <CarCard temp={item} index={index}/>
+                    <CarCard temp={item} index={index} />
                   ))
                 ) : (
                   <div className="home___error-container">
                     <h2 className="text-black text-xl dont-bold">...</h2>
                   </div>
-                )} 
+                )}
 
 
 
@@ -542,61 +629,8 @@ const Body = () => {
 
 
 
-<div className="mt-4 mb-4 flex justify-center items-center space-x-4">
-  <button
-    onClick={() => {
-      setPage(p => Math.max(p - 1, 1));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-    disabled={page === 1}
-    className="px-4 py-2 rounded disabled:opacity-50 myGray text-3xl"
-    style={{ color: '#999' }}
-  >
-    &#8592;
-  </button>
+<SlidingPagination page={page} totalPages={totalPages} setPage={setPage} />
 
-  {/* Page numbers */}
-<Swiper
-  slidesPerView="auto"
-  spaceBetween={8}
-  className="mySwiper"
->
-  {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
-    <SwiperSlide key={num} style={{ width: '40px' }}>
-      <button
-        onClick={() => {
-          setPage(num);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        className={`flex items-center justify-center text-white text-[11px] px-2 py-1 rounded-full ${
-          page === num ? 'bg-[#fd342d]' : 'bg-gray-700'
-        }`}
-        style={{
-          width: '30px',
-          height: '30px',
-          borderRadius: '50%',
-          fontWeight: page === num ? 'bold' : 'normal',
-        }}
-        disabled={page === num}
-      >
-        {num}
-      </button>
-    </SwiperSlide>
-  ))}
-</Swiper>
-
-  <button
-    onClick={() => {
-      setPage(p => Math.min(p + 1, totalPages));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }}
-    disabled={page === totalPages}
-    className="px-4 py-2 rounded disabled:opacity-50 myGray text-3xl"
-    style={{ color: '#999' }}
-  >
-    &#8594;
-  </button>
-</div>
 
 
 
