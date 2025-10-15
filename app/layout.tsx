@@ -4,13 +4,12 @@ import './globals.css'
 import './custom.css'
 import './bootstrap.min.css'
 import './bs-select.css'
-import './slick.css'
-import { useSearchParams } from 'next/navigation'
+import './slick.css' 
 import { CartProvider } from './context/CartContext';
 import { BooleanProvider } from './context/CartBoolContext'; 
-import GifLoader from '../components/GifLoader'
-import Offer from '../components/Offer'
+import GifLoader from '../components/GifLoader' 
 import WhatsAppIcon from '../components/WhatsAppIcon';  
+import FacebookPixel from '../components/FacebookPixel';  
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 
@@ -138,6 +137,7 @@ export default function RootLayout({
         <CartProvider>
           <Navbar2 />
           <WhatsAppIcon />
+          <FacebookPixel />
           {/* <GoogleAnalytics gaId="" /> */}
           {children} 
           <Footer />

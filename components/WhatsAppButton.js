@@ -9,6 +9,12 @@ const WhatsAppButton = ({ inputs, items, total, delivery, code }) => {
 
 
   const createOrder = async () => {
+
+    if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+  window.fbq('track', 'Purchase', { value: total, currency: 'USD' });
+}
+
+
     try {
       // 1. Update stock
       for (const item of items) {

@@ -9,7 +9,7 @@ export async function POST(request) {
     const { inputs, items, total, delivery, code } = await request.json();
 
     // Basic validation
-    if (!inputs || !items || typeof total !== 'number') {
+    if (!inputs || !items  ) {
       return NextResponse.json(
         { error: 'Missing or invalid required fields' },
         { status: 400 }
@@ -43,7 +43,7 @@ export async function POST(request) {
       oid: nextOid,
       userInfo: items, // ⚡ Double-check naming: is "userInfo" really items?
       cartItems: inputs,
-      total,
+     total: String(total ?? ''), 
       delivery: String(delivery ?? ''), // Ensure delivery is stored as string
       code: code ?? null,
       date: formattedDate,
