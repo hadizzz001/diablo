@@ -48,20 +48,27 @@ export async function GET(req) {
     // Build MongoDB query
     const query = {};
 
-    // 🔍 Tokenized fuzzy search
-    if (search) {
-      const tokens = search.split(/\s+/).filter(Boolean); // split by spaces
-      query.$and = tokens.map((token) => ({
-        $or: [
-          { title: { $regex: token, $options: "i" } },
-          { category: { $regex: token, $options: "i" } },
-          { sub: { $regex: token, $options: "i" } },
-          { factory: { $regex: token, $options: "i" } },
-          { "color.sizes.size": { $regex: token, $options: "i" } },
-          { "color.name": { $regex: token, $options: "i" } },
-        ],
-      }));
-    }
+// 🔍 Tokenized fuzzy search
+if (search) {
+  // If search keyword is exactly "moto"
+  if (search.toLowerCase() === "moto") {
+    query.category = "moto"; // Exact match
+  } else {
+    // Normal fuzzy search
+    const tokens = search.split(/\s+/).filter(Boolean); // split by spaces
+    query.$and = tokens.map((token) => ({
+      $or: [
+        { title: { $regex: token, $options: "i" } },
+        { category: { $regex: token, $options: "i" } },
+        { sub: { $regex: token, $options: "i" } },
+        { factory: { $regex: token, $options: "i" } },
+        { "color.sizes.size": { $regex: token, $options: "i" } },
+        { "color.name": { $regex: token, $options: "i" } },
+      ],
+    }));
+  }
+}
+
 
     // 🏷️ Category filter
     if (cat) {
