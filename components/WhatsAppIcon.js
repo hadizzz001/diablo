@@ -19,7 +19,7 @@ const WhatsAppIcon = () => {
 
         {/* GIF */}
         <img
-          src="https://res.cloudinary.com/dvwawpqc7/image/upload/v1764532352/01-unscreen_gfyser_r03zfp.gif"
+          src="https://res.cloudinary.com/dnucihygt/image/upload/v1764685345/output-onlinegiftools_qj7gav.gif"
           alt="WhatsApp Icon"
           style={gifStyle}
         />
