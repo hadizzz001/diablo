@@ -84,10 +84,30 @@ if (search) {
       query.sub = { $regex: `^${sub}\\s*$`, $options: "i" };
     }
 
-    // 🏷️ Brand/Factory filter
-    if (brnd) {
-      query.factory = { $regex: `^${brnd}\\s*$`, $options: "i" };
-    }
+// 🏷️ Brand/Factory filter (updated)
+if (brnd) {
+  if (brnd.toLowerCase() === "formula 1") {
+    // Apply search instead of exact brand filter
+    const tokens = brnd.split(/\s+/).filter(Boolean);
+    query.$and = [
+      ...(query.$and || []),
+      ...tokens.map((token) => ({
+        $or: [
+          { title: { $regex: token, $options: "i" } },
+          { category: { $regex: token, $options: "i" } },
+          { sub: { $regex: token, $options: "i" } },
+          { factory: { $regex: token, $options: "i" } },
+          { "color.sizes.size": { $regex: token, $options: "i" } },
+          { "color.name": { $regex: token, $options: "i" } },
+        ],
+      })),
+    ];
+  } else {
+    // Normal exact brand filter
+    query.factory = { $regex: `^${brnd}\\s*$`, $options: "i" };
+  }
+}
+
 
     // 🏷️ Size filter
     if (sizes.length > 0) {
